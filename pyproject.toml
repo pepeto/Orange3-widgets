@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "orange3-custom-addon"
+version = "0.2.0"
+description = "Custom widgets for Orange3, including GMM clustering"
+authors = [
+    { name = "Tu Nombre", email = "tu@email.com" }
+]
+license = { text = "MIT" }
+requires-python = ">=3.8"
+dependencies = [
+    "Orange3",
+    "scikit-learn",
+    "matplotlib",
+    "hmmlearn",
+	"yfinance"        # ← agregado
+]
+classifiers = [
+    "Framework :: Orange3",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent"
+]
+
+[tool.setuptools.packages.find]
+include = ["orangecontrib.*"]
+
+[tool.setuptools.package-data]
+"orangecontrib.custom.widgets" = ["icons/*.svg"]
+
+[project.entry-points."orange3.addon"]
+custom = "orangecontrib.custom"
+
+[project.entry-points."orange.widgets"]
+Custom = "orangecontrib.custom.widgets"
